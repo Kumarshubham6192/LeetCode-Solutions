@@ -1,0 +1,24 @@
+class Solution:
+    def nextPermutation(self, a: List[int]) -> None:
+        piv = -1
+        n = len(a)
+        for i in range (n-2,-1,-1):
+            if (a[i] < a[i+1]):
+                piv = i
+                break
+                
+        if(piv == -1):
+            a.reverse()
+            return
+            
+        for j in range(n-1,piv,-1):
+            if(a[j] > a[piv]):
+                a[j] , a[piv] = a[piv] , a[j]
+                break
+                
+        left = piv + 1
+        right = n - 1
+        while left < right:
+            a[left], a[right] = a[right], a[left]
+            left += 1
+            right -= 1
