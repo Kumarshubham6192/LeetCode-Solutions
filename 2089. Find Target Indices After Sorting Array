@@ -1,0 +1,13 @@
+class Solution:
+    def targetIndices(self, nums: list[int], target: int) -> list[int]:
+        a=[]
+        if target in nums:
+            nums.sort()
+            position = nums.index(target)
+            count = nums.count(target)
+            for i in range (position,position+count,1):
+                a.append(i)
+            return a
+        else:
+            return a
+        
