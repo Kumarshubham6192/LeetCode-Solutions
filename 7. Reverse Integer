@@ -1,0 +1,24 @@
+class Solution:
+    def reverse(self, x: int) -> int:
+        num = 0
+        if(x<0 ):
+            x=-(x)
+            while x>0:
+                mod=x%10
+                num = mod + num*10
+                x=x//10
+            if(-2147483648 <= num <= 2147483647 ):
+               return -num 
+            else:
+                return 0  
+        elif(x==0 ):
+            return 0 
+        else:
+            while x>0:
+                mod=x%10
+                num = mod + num*10
+                x=x//10
+            if(-2147483648 <= num <= 2147483647 ):
+                return num
+            else:
+                return 0 
