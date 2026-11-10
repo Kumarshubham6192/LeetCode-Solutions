@@ -1,0 +1,51 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class Solution {
+    public List<Integer> spiralOrder(int[][] matrix) {
+        List<Integer> nums = new ArrayList<>();
+        
+        // Base edge case check
+        if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+            return nums;
+        }
+
+        int startRow = 0;
+        int endRow = matrix.length - 1;
+        int startCol = 0;
+        int endCol = matrix[0].length - 1; // Works for both square and rectangular matrices
+
+        while (startRow <= endRow && startCol <= endCol) {
+            
+            // 1. Move Right across the top remaining row
+            for (int i = startCol; i <= endCol; i++) {
+                nums.add(matrix[startRow][i]);
+            }
+            startRow++; // Compress the top boundary down
+
+            // 2. Move Down along the rightmost remaining column
+            for (int i = startRow; i <= endRow; i++) {
+                nums.add(matrix[i][endCol]);
+            }
+            endCol--; // Compress the right boundary left
+
+            // 3. Move Left across the bottom remaining row
+            if (startRow <= endRow) {
+                for (int i = endCol; i >= startCol; i--) {
+                    nums.add(matrix[endRow][i]);
+                }
+                endRow--; // Compress the bottom boundary up
+            }
+
+            // 4. Move Up along the leftmost remaining column
+            if (startCol <= endCol) {
+                for (int i = endRow; i >= startRow; i--) {
+                    nums.add(matrix[i][startCol]);
+                }
+                startCol++; // Compress the left boundary right
+            }
+        }
+
+        return nums;
+    }
+}
